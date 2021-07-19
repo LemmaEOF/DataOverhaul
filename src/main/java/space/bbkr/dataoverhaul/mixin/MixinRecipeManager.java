@@ -32,7 +32,7 @@ import java.util.*;
 @Mixin(RecipeManager.class)
 public class MixinRecipeManager {
 	@Shadow @Final private static Gson GSON;
-	private static final List<Identifier> DEPRECATED_RECIPES = new ArrayList<>();
+	private static final List<Identifier> DEPRECATED_RECIPES = new ArrayList<>(); //TODO: will this be needed?
 
 	@Inject(method = "apply", at = @At("HEAD"))
 	private void applyTemplates(Map<Identifier, JsonElement> recipes, ResourceManager manager, Profiler profiler, CallbackInfo info) {
@@ -43,22 +43,29 @@ public class MixinRecipeManager {
 		for (Identifier path : manager.findResources("materials", path -> path.endsWith(".json"))) {
 			try {
 				Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
-				InputStream res = manager.getResource(path).getInputStream();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(res, StandardCharsets.UTF_8));
-				JsonElement el = JsonHelper.deserialize(GSON, reader, JsonElement.class);
-				if (el != null && el.isJsonObject()) {
-					JsonObject json = el.getAsJsonObject();
-					Map<String, Identifier> map = new HashMap<>();
-					String type = JsonHelper.getString(json, "type", "");
-					if (JsonHelper.hasJsonObject(json, "variants")) {
-						JsonObject variants = JsonHelper.getObject(json, "variants");
-						for (Map.Entry<String, JsonElement> entry : variants.entrySet()) {
-							if (JsonHelper.isString(entry.getValue())) {
-								map.put(entry.getKey(), new Identifier(entry.getValue().getAsString()));
+				Collection<Resource> resources = manager.getAllResources(path);
+				Map<String, Identifier> map = new HashMap<>();
+				String type = "";
+				for (Resource res : resources) {
+					String contents = IOUtils.toString(res.getInputStream(), StandardCharsets.UTF_8);
+					JsonElement el = JsonHelper.deserialize(GSON, contents, JsonElement.class);
+					if (el != null && el.isJsonObject()) {
+						JsonObject json = el.getAsJsonObject();
+						String resType = JsonHelper.getString(json, "type", "");
+						if (!type.equals("") && !type.equals(resType)) {
+							//TODO: throw here!!
+						}
+						type = resType;
+						if (JsonHelper.hasJsonObject(json, "variants")) {
+							JsonObject variants = JsonHelper.getObject(json, "variants");
+							for (Map.Entry<String, JsonElement> entry : variants.entrySet()) {
+								if (JsonHelper.isString(entry.getValue())) {
+									map.put(entry.getKey(), new Identifier(entry.getValue().getAsString()));
+								}
 							}
 						}
-					}
-					materials.put(id, new RecipeMaterial(id, map, type));
+				}
+				materials.put(id, new RecipeMaterial(id, map, type));
 				}
 			} catch (IOException e) {
 				//TODO: print here
