@@ -5,8 +5,14 @@
 
 [>> Downloads <<](https://github.com/Boundarybreaker/DataOverhaul/releases)
 
-*Get set up!*
+*It's finally time.*
 
-**This mod is open source and under a permissive license.** As such, it can be included in any modpack on any platform without prior permission. We appreciate hearing about people using our mods, but you do not need to ask to use them. See the [LICENSE file](LICENSE) for more details.
+**This mod is open source and under a permissive license.** As such, it can be included in any modpack on any platform without prior permission. We appreciate hearing about people using our mods, but you do not need to ask to use them. See the [LICENSE file](LICENSE.md) for more details.
 
-This is a template mod for creating Fabric projects. I'll be adding to it over time. Currently, it comes with a build.gradle set up to provide access to Cotton's maven and publish to Artifactory.
+Data Overhaul adds a recipe template system to drastically cut down on the number of JSON files a modder has to write without adding any required code calls.
+
+TODO:
+- [ ] Figure out how to deal with stone bricks (inject name into template name somehow? difficult with limiteed identifier symbols)
+- [ ] Remove vanilla recipes for ones added through templates (should be irrelevant if name injection is doable)
+- [ ] Other data overhauls (extensions onto tags, template advancements to match template recipes)
+- [ ] Proper documentation

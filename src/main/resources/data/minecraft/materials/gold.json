@@ -1,0 +1,11 @@
+{
+  "type": "metal",
+  "variants": {
+    "nugget": "minecraft:gold_nugget",
+    "ingot": "minecraft:gold_ingot",
+    "block": "minecraft:gold_block",
+    "ore": "minecraft:gold_ore",
+    "deepslate_ore": "minecraft:deepslate_gold_ore",
+    "raw": "minecraft:raw_gold"
+  }
+}

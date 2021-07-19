@@ -1,0 +1,16 @@
+{
+  "type": "wooden",
+  "variants": {
+    "block": "minecraft:jungle_planks",
+    "boat": "minecraft:jungle_boat",
+    "button": "minecraft:jungle_button",
+    "door": "minecraft:jungle_door",
+    "fence": "minecraft:jungle_fence",
+    "fence_gate": "minecraft:jungle_fence_gate",
+    "pressure_plate": "minecraft:jungle_pressure_plate",
+    "sign": "minecraft:jungle_sign",
+    "slab": "minecraft:jungle_slab",
+    "stairs": "minecraft:jungle_stairs",
+    "trapdoor": "minecraft:jungle_trapdoor"
+  }
+}

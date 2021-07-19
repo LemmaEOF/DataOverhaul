@@ -1,0 +1,8 @@
+{
+  "type": "stone",
+  "variants": {
+    "block": "minecraft:stone",
+    "slab": "minecraft:stone_slab",
+    "stairs": "minecraft:stone_stairs"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "wooden",
+  "variants": {
+    "block": "minecraft:acacia_planks",
+    "boat": "minecraft:acacia_boat",
+    "button": "minecraft:acacia_button",
+    "door": "minecraft:acacia_door",
+    "fence": "minecraft:acacia_fence",
+    "fence_gate": "minecraft:acacia_fence_gate",
+    "pressure_plate": "minecraft:acacia_pressure_plate",
+    "sign": "minecraft:acacia_sign",
+    "slab": "minecraft:acacia_slab",
+    "stairs": "minecraft:acacia_stairs",
+    "trapdoor": "minecraft:acacia_trapdoor"
+  }
+}

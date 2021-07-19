@@ -1,0 +1,16 @@
+{
+  "type": "wooden",
+  "variants": {
+    "block": "minecraft:oak_planks",
+    "boat": "minecraft:oak_boat",
+    "button": "minecraft:oak_button",
+    "door": "minecraft:oak_door",
+    "fence": "minecraft:oak_fence",
+    "fence_gate": "minecraft:oak_fence_gate",
+    "pressure_plate": "minecraft:oak_pressure_plate",
+    "sign": "minecraft:oak_sign",
+    "slab": "minecraft:oak_slab",
+    "stairs": "minecraft:oak_stairs",
+    "trapdoor": "minecraft:oak_trapdoor"
+  }
+}

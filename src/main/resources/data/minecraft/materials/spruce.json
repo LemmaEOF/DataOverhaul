@@ -1,0 +1,16 @@
+{
+  "type": "wooden",
+  "variants": {
+    "block": "minecraft:spruce_planks",
+    "boat": "minecraft:spruce_boat",
+    "button": "minecraft:spruce_button",
+    "door": "minecraft:spruce_door",
+    "fence": "minecraft:spruce_fence",
+    "fence_gate": "minecraft:spruce_fence_gate",
+    "pressure_plate": "minecraft:spruce_pressure_plate",
+    "sign": "minecraft:spruce_sign",
+    "slab": "minecraft:spruce_slab",
+    "stairs": "minecraft:spruce_stairs",
+    "trapdoor": "minecraft:spruce_trapdoor"
+  }
+}

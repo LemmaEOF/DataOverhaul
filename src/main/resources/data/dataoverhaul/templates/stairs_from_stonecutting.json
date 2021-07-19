@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item$variant": "block"
+  },
+  "result$variant": "stairs",
+  "count": 1,
+  "$requirements": {
+    "type": "stone",
+    "variants": [
+      "block",
+      "stairs"
+    ]
+  }
+}

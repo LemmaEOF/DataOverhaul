@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item$variant": "block"
+  },
+  "result$variant": "slab",
+  "count": 2,
+  "$requirements": {
+    "type": "stone",
+    "variants": [
+      "block",
+      "slab"
+    ]
+  }
+}
