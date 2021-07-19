@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "wooden_fence",
+  "group$type": "fence",
   "pattern": [
     "W#W",
     "W#W"
@@ -17,8 +17,10 @@
     "item$variant": "fence",
     "count": 3
   },
-  "$variants": [
-    "block",
-    "fence"
-  ]
+  "$requirements": {
+    "variants": [
+      "block",
+      "fence"
+    ]
+  }
 }

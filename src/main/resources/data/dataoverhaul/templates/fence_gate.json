@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group$type": "fence_gate",
   "pattern": [
     "#W#",
     "#W#"
@@ -15,8 +16,10 @@
   "result": {
     "item$variant": "fence_gate"
   },
-  "$variants": [
-    "block",
-    "fence_gate"
-  ]
+  "$requirements": {
+    "variants": [
+      "block",
+      "fence_gate"
+    ]
+  }
 }

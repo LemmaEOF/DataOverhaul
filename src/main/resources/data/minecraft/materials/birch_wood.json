@@ -1,0 +1,16 @@
+{
+  "type": "wooden",
+  "variants": {
+    "block": "minecraft:birch_planks",
+    "boat": "minecraft:birch_boat",
+    "button": "minecraft:birch_button",
+    "door": "minecraft:birch_door",
+    "fence": "minecraft:birch_fence",
+    "fence_gate": "minecraft:birch_fence_gate",
+    "pressure_plate": "minecraft:birch_pressure_plate",
+    "sign": "minecraft:birch_sign",
+    "slab": "minecraft:birch_slab",
+    "stairs": "minecraft:birch_stairs",
+    "trapdoor": "minecraft:birch_trapdoor"
+  }
+}

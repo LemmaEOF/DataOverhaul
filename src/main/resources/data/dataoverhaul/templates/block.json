@@ -13,8 +13,10 @@
   "result": {
     "item$variant": "block"
   },
-  "$variants": [
-    "ingot",
-    "block"
-  ]
+  "$requirements": {
+    "variants": [
+      "ingot",
+      "block"
+    ]
+  }
 }

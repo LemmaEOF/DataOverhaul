@@ -11,12 +11,14 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.profiler.Profiler;
+import org.apache.commons.io.IOUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import space.bbkr.dataoverhaul.RecipeMaterial;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,7 +39,7 @@ public class MixinRecipeManager {
 		for (Identifier id : DEPRECATED_RECIPES) {
 			recipes.remove(id);
 		}
-		Map<Identifier, Map<String, Identifier>> materials = new HashMap<>();
+		Map<Identifier, RecipeMaterial> materials = new HashMap<>();
 		for (Identifier path : manager.findResources("materials", path -> path.endsWith(".json"))) {
 			try {
 				Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
@@ -47,12 +49,16 @@ public class MixinRecipeManager {
 				if (el != null && el.isJsonObject()) {
 					JsonObject json = el.getAsJsonObject();
 					Map<String, Identifier> map = new HashMap<>();
-					for (Map.Entry<String, JsonElement> entry : json.entrySet()) {
-						if (JsonHelper.isString(entry.getValue())) {
-							map.put(entry.getKey(), new Identifier(entry.getValue().getAsString()));
+					String type = JsonHelper.getString(json, "type", "");
+					if (JsonHelper.hasJsonObject(json, "variants")) {
+						JsonObject variants = JsonHelper.getObject(json, "variants");
+						for (Map.Entry<String, JsonElement> entry : variants.entrySet()) {
+							if (JsonHelper.isString(entry.getValue())) {
+								map.put(entry.getKey(), new Identifier(entry.getValue().getAsString()));
+							}
 						}
 					}
-					materials.put(id, map);
+					materials.put(id, new RecipeMaterial(id, map, type));
 				}
 			} catch (IOException e) {
 				//TODO: print here
@@ -62,28 +68,35 @@ public class MixinRecipeManager {
 			try {
 				Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
 				Resource res = manager.getResource(path);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(res.getInputStream(), StandardCharsets.UTF_8));
-				for (Identifier matId : materials.keySet()) {
-					Map<String, Identifier> material = materials.get(matId);
-					JsonElement el = JsonHelper.deserialize(GSON, reader, JsonElement.class);
-					if (el != null && el.isJsonObject()) {
-						JsonObject json = el.getAsJsonObject();
-						JsonArray array = JsonHelper.getArray(json, "$variants", new JsonArray());
-						boolean canUse = true;
-						for (JsonElement entry : array) {
-							//TODO: throw if invalid?
-							if (!material.containsKey(entry.getAsString())) {
-								canUse = false;
+				String contents = IOUtils.toString(res.getInputStream(), StandardCharsets.UTF_8);
+				JsonElement el = JsonHelper.deserialize(GSON, contents, JsonElement.class);
+				if (el != null && el.isJsonObject()) {
+					JsonObject json = el.getAsJsonObject();
+					if (JsonHelper.hasJsonObject(json, "$requirements")) {
+						JsonObject reqs = JsonHelper.getObject(json, "$requirements", new JsonObject());
+						String type = JsonHelper.getString(reqs, "type", "");
+						JsonArray variants = JsonHelper.getArray(reqs, "variants", new JsonArray());
+						for (Identifier matId : materials.keySet()) {
+							RecipeMaterial material = materials.get(matId);
+							boolean canUse = true;
+							if (!type.equals("") && !type.equals(material.type())) canUse = false;
+							for (JsonElement entry : variants) {
+								//TODO: throw if invalid?
+								if (!material.hasVariant(entry.getAsString())) {
+									canUse = false;
+								}
 							}
+							if (!canUse) continue;
+							//help me, this is the only easy way to deal with comod and `deepCopy` is package-private
+							JsonObject newJson = JsonHelper.deserialize(GSON, contents, JsonElement.class).getAsJsonObject();
+							newJson.remove("$requirements");
+							dataoverhaul$visitObject(json, newJson, material);
+							Identifier recipeId = new Identifier(matId.getNamespace(), matId.getPath() + "_" + id.getPath());
+							recipes.put(recipeId, newJson);
 						}
-						if (!canUse) continue;
-						json.remove("%variants");
-						//help me, this is the only easy way to deal with comod
-						JsonObject copy = JsonHelper.deserialize(GSON, new BufferedReader(new InputStreamReader(manager.getResource(path).getInputStream(), StandardCharsets.UTF_8)), JsonElement.class).getAsJsonObject();
-						dataoverhaul$visitObject(copy, json, material);
-						Identifier recipeId = new Identifier(matId.getNamespace(), matId.getPath() + "_" + id.getPath());
-						recipes.put(recipeId, json);
-					} //TODO: throw here?
+					} else {
+						//TODO: throw here!!
+					}
 				}
 			} catch (IOException e) {
 				//TODO: print here
@@ -91,11 +104,19 @@ public class MixinRecipeManager {
 		}
 	}
 
-	private void dataoverhaul$visitObject(JsonObject copy, JsonObject json, Map<String, Identifier> material) {
-		for (Map.Entry<String, JsonElement> entry : copy.entrySet()) {
+	private void dataoverhaul$visitObject(JsonObject iterObj, JsonObject json, RecipeMaterial material) {
+		for (Map.Entry<String, JsonElement> entry : iterObj.entrySet()) {
 			if (entry.getKey().endsWith("$variant") && JsonHelper.isString(entry.getValue())) {
 				String variant = entry.getValue().getAsString();
-				json.addProperty(entry.getKey().substring(0, entry.getKey().length() - 8), material.get(variant).toString());
+				json.addProperty(entry.getKey().substring(0, entry.getKey().length() - 8), material.getVariant(variant).toString());
+				json.remove(entry.getKey());
+			} else if (entry.getKey().endsWith("$type") && JsonHelper.isString(entry.getValue())) {
+				String base = entry.getValue().getAsString();
+				json.addProperty(entry.getKey().substring(0, entry.getKey().length() - 5), material.type() + "_" + base);
+				json.remove(entry.getKey());
+			} else if (entry.getKey().endsWith("$material") && JsonHelper.isString(entry.getValue())) {
+				String base = entry.getValue().getAsString();
+				json.addProperty(entry.getKey().substring(0, entry.getKey().length() - 9), material.getShortName() + "_" + base);
 				json.remove(entry.getKey());
 			} else if (entry.getValue().isJsonArray()) {
 				dataoverhaul$visitArray(entry.getValue().getAsJsonArray(), json.get(entry.getKey()).getAsJsonArray(), material);
@@ -105,9 +126,9 @@ public class MixinRecipeManager {
 		}
 	}
 
-	private void dataoverhaul$visitArray(JsonArray copy, JsonArray json, Map<String, Identifier> material) {
-		for (int i = 0; i < copy.size(); i++) {
-			JsonElement el = copy.get(i);
+	private void dataoverhaul$visitArray(JsonArray iterObj, JsonArray json, RecipeMaterial material) {
+		for (int i = 0; i < iterObj.size(); i++) {
+			JsonElement el = iterObj.get(i);
 			if (el.isJsonObject()) {
 				dataoverhaul$visitObject(el.getAsJsonObject(), json.get(i).getAsJsonObject(), material);
 			}

@@ -5,8 +5,11 @@
   },
   "result$variant": "wall",
   "count": 1,
-  "$variants": [
-    "block",
-    "wall"
-  ]
+  "$requirements": {
+    "type": "stone",
+    "variants": [
+      "block",
+      "wall"
+    ]
+  }
 }

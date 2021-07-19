@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group$type": "door",
   "pattern": [
     "##",
     "##",
@@ -14,8 +15,10 @@
     "item$variant": "door",
     "count": 3
   },
-  "$variants": [
-    "block",
-    "door"
-  ]
+  "$requirements": {
+    "variants": [
+      "block",
+      "door"
+    ]
+  }
 }

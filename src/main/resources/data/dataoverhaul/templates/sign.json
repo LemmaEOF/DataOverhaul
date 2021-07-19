@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group$type": "sign",
   "pattern": [
     "###",
     "###",
@@ -17,8 +18,10 @@
     "item$variant": "sign",
     "count": 3
   },
-  "$variants": [
-    "block",
-    "sign"
-  ]
+  "$requirements": {
+    "variants": [
+      "block",
+      "sign"
+    ]
+  }
 }

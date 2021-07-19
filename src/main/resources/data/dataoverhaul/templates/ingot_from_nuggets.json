@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group$material": "ingot",
   "pattern": [
     "###",
     "###",
@@ -13,8 +14,10 @@
   "result": {
     "item$variant": "ingot"
   },
-  "$variants": [
-    "nugget",
-    "ingot"
-  ]
+  "$requirements": {
+    "variants": [
+      "nugget",
+      "ingot"
+    ]
+  }
 }

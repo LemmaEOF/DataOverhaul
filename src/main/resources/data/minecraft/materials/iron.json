@@ -1,8 +1,11 @@
 {
-  "nugget": "minecraft:iron_nugget",
-  "ingot": "minecraft:iron_ingot",
-  "block": "minecraft:iron_block",
-  "ore": "minecraft:iron_ore",
-  "deepslate_ore": "minecraft:deepslate_iron_ore",
-  "raw": "minecraft:raw_iron"
+  "type": "metal",
+  "variants": {
+    "nugget": "minecraft:iron_nugget",
+    "ingot": "minecraft:iron_ingot",
+    "block": "minecraft:iron_block",
+    "ore": "minecraft:iron_ore",
+    "deepslate_ore": "minecraft:deepslate_iron_ore",
+    "raw": "minecraft:raw_iron"
+  }
 }

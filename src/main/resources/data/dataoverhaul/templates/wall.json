@@ -13,8 +13,10 @@
     "item$variant": "wall",
     "count": 6
   },
-  "$variants": [
-    "block",
-    "wall"
-  ]
+  "$requirements": {
+    "variants": [
+      "block",
+      "wall"
+    ]
+  }
 }

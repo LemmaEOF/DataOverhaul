@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group$variant": "ingot",
+  "group$material": "ingot",
   "ingredients": [
     {
       "item$variant": "block"
@@ -10,8 +10,10 @@
     "item$variant": "ingot",
     "count": 9
   },
-  "$variants": [
-    "block",
-    "ingot"
-  ]
+  "$requirements": {
+    "variants": [
+      "block",
+      "ingot"
+    ]
+  }
 }

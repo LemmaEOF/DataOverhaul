@@ -1,14 +1,16 @@
 {
   "type": "minecraft:smelting",
-  "group$variant": "ingot",
+  "group$material": "ingot",
   "ingredient": {
     "item$variant": "deepslate_ore"
   },
   "result$variant": "ingot",
   "experience": 0.7,
   "cookingtime": 200,
-  "$variants": [
-    "deepslate_ore",
-    "ingot"
-  ]
+  "$requirements": {
+    "variants": [
+      "deepslate_ore",
+      "ingot"
+    ]
+  }
 }

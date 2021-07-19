@@ -1,6 +1,9 @@
 {
-  "ingot": "minecraft:copper_ingot",
-  "block": "minecraft:copper_block",
-  "stairs": "minecraft:copper_stairs",
-  "slab": "minecraft:copper_slab"
+  "type": "metal",
+  "variants": {
+    "ingot": "minecraft:copper_ingot",
+    "block": "minecraft:copper_block",
+    "stairs": "minecraft:copper_stairs",
+    "slab": "minecraft:copper_slab"
+  }
 }

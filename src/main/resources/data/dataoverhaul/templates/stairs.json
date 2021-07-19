@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group$type": "stairs",
   "pattern": [
     "#  ",
     "## ",
@@ -14,8 +15,10 @@
     "item$variant": "stairs",
     "count": 4
   },
-  "$variants": [
-    "block",
-    "stairs"
-  ]
+  "$requirements": {
+    "variants": [
+      "block",
+      "stairs"
+    ]
+  }
 }

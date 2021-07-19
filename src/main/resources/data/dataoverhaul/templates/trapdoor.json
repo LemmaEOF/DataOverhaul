@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group$type": "trapdoor",
   "pattern": [
     "###",
     "###"
@@ -13,8 +14,10 @@
     "item$variant": "trapdoor",
     "count": 2
   },
-  "$variants": [
-    "block",
-    "trapdoor"
-  ]
+  "$requirements": {
+    "variants": [
+      "block",
+      "trapdoor"
+    ]
+  }
 }
