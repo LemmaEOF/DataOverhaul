@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "group$variant": "ingot",
+  "ingredient": {
+    "item$variant": "raw"
+  },
+  "result$variant": "ingot",
+  "experience": 0.7,
+  "cookingtime": 100,
+  "$variants": [
+    "raw",
+    "ingot"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item$variant": "block"
+    }
+  },
+  "result": {
+    "item$variant": "fence_gate"
+  },
+  "$variants": [
+    "block",
+    "fence_gate"
+  ]
+}

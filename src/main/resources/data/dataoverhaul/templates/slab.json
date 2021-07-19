@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item$variant": "block"
+    }
+  },
+  "result": {
+    "item$variant": "slab",
+    "count": 2
+  },
+  "$variants": [
+    "block",
+    "slab"
+  ]
+}

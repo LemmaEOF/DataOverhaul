@@ -1,9 +1,12 @@
-# Fabric Example Mod
+<img src="icon.png" align="right" width="180px"/>
 
-## Setup
+# Data Overhaul
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
 
-## License
+[>> Downloads <<](https://github.com/Boundarybreaker/DataOverhaul/releases)
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+*Get set up!*
+
+**This mod is open source and under a permissive license.** As such, it can be included in any modpack on any platform without prior permission. We appreciate hearing about people using our mods, but you do not need to ask to use them. See the [LICENSE file](LICENSE) for more details.
+
+This is a template mod for creating Fabric projects. I'll be adding to it over time. Currently, it comes with a build.gradle set up to provide access to Cotton's maven and publish to Artifactory.

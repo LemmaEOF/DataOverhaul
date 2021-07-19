@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "group$variant": "ingot",
+  "ingredient": {
+    "item$variant": "raw"
+  },
+  "result$variant": "ingot",
+  "experience": 0.7,
+  "cookingtime": 200,
+  "$variants": [
+    "raw",
+    "ingot"
+  ]
+}

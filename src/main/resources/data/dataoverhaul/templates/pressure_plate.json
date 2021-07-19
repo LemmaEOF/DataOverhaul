@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item$variant": "block"
+    }
+  },
+  "result": {
+    "item$variant": "pressure_plate"
+  },
+  "$variants": [
+    "block",
+    "pressure_plate"
+  ]
+}

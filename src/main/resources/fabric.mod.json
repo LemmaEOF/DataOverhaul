@@ -1,29 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "dataoverhaul",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Data Overhaul",
+  "description": "It's finally time.",
   "authors": [
-    "Me!"
+    "LemmaEOF",
+    "Repulica"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/Boundarybreaker/DataOverhaul"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "Fuck Around and Find Out License 0.2",
+  "icon": "assets/dataoverhaul/icon.png",
 
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "net.fabricmc.example.ExampleMod"
-    ]
-  },
   "mixins": [
-    "modid.mixins.json"
+    "dataoverhaul.mixins.json"
   ],
 
   "depends": {
@@ -31,8 +26,5 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }

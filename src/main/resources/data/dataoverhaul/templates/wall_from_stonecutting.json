@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item$variant": "block"
+  },
+  "result$variant": "wall",
+  "count": 1,
+  "$variants": [
+    "block",
+    "wall"
+  ]
+}

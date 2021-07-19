@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item$variant": "block"
+    }
+  ],
+  "result": {
+    "item$variant": "button"
+  },
+  "$variants": [
+    "block",
+    "button"
+  ]
+}
