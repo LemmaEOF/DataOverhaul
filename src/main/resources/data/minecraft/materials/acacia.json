@@ -14,7 +14,7 @@
     "slab": "minecraft:acacia_slab",
     "stairs": "minecraft:acacia_stairs",
     "trapdoor": "minecraft:acacia_trapdoor",
-    "wood": "minecraft:acaica_wood"
+    "wood": "minecraft:acacia_wood"
   },
   "ignore": [
     "dataoverhaul:boat",

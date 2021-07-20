@@ -12,7 +12,7 @@
 Data Overhaul adds a recipe template system to drastically cut down on the number of JSON files a modder has to write without adding any required code calls.
 
 TODO:
-- [ ] Figure out how to deal with stone bricks (inject name into template name somehow? difficult with limiteed identifier symbols)
-- [ ] Remove vanilla recipes for ones added through templates (should be irrelevant if name injection is doable)
+- [ ] ~~Figure out how to deal with stone bricks (inject name into template name somehow? difficult with limited identifier symbols)~~ added opt-out system
+- [ ] ~~Remove vanilla recipes for ones added through templates (should be irrelevant if name injection is doable)~~ added opt-out system
 - [ ] Other data overhauls (extensions onto tags, template advancements to match template recipes)
 - [ ] Proper documentation
