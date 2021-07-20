@@ -4,9 +4,9 @@
   "package": "space.bbkr.dataoverhaul.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "MixinRecipeManager"
   ],
   "client": [
-    "MixinRecipeManager"
   ],
   "injectors": {
     "defaultRequire": 1

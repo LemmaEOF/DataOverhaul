@@ -31,6 +31,8 @@ public class MixinRecipeManager {
 
 	@Inject(method = "apply", at = @At("HEAD"))
 	private void applyTemplates(Map<Identifier, JsonElement> recipes, ResourceManager manager, Profiler profiler, CallbackInfo info) {
+		int templates = 0;
+		int addedRecipes = 0;
 		Map<Identifier, RecipeMaterial> materials = new HashMap<>();
 		for (Identifier path : manager.findResources("materials", path -> path.endsWith(".json"))) {
 			Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
@@ -46,7 +48,7 @@ public class MixinRecipeManager {
 						JsonObject json = el.getAsJsonObject();
 						String resType = JsonHelper.getString(json, "type", "");
 						if (!type.equals("") && !type.equals(resType)) {
-							LOGGER.error("Parsing error loading material {}: already has type {}, cannot be assigned {}", id, type, resType);
+							LOGGER.error("<Data Overhaul> Parsing error loading material {}: already has type {}, cannot be assigned {}", id, type, resType);
 							continue;
 						}
 						type = resType;
@@ -65,7 +67,7 @@ public class MixinRecipeManager {
 								if (JsonHelper.isString(entry)) {
 									ignore.add(new Identifier(entry.getAsString()));
 								} else {
-									LOGGER.error("Parsing error loading material {}: ignore list must only be strings", id);
+									LOGGER.error("<Data Overhaul> Parsing error loading material {}: ignore list must only be strings", id);
 									canAdd = false;
 								}
 							}
@@ -75,7 +77,7 @@ public class MixinRecipeManager {
 					materials.put(id, new RecipeMaterial(id, map, type, ignore));
 				}
 			} catch (IOException e) {
-				LOGGER.error("Parsing error loading material {}", id, e);
+				LOGGER.error("<Data Overhaul> Parsing error loading material {}", id, e);
 			}
 		}
 		for (Identifier path : manager.findResources("templates/recipes", path -> path.endsWith(".json"))) {
@@ -87,6 +89,7 @@ public class MixinRecipeManager {
 				if (el != null && el.isJsonObject()) {
 					JsonObject json = el.getAsJsonObject();
 					if (JsonHelper.hasJsonObject(json, "$requirements")) {
+						templates++;
 						JsonObject reqs = JsonHelper.getObject(json, "$requirements", new JsonObject());
 						String type = JsonHelper.getString(reqs, "type", "");
 						JsonArray variants = JsonHelper.getArray(reqs, "variants", new JsonArray());
@@ -108,15 +111,17 @@ public class MixinRecipeManager {
 							dataoverhaul$visitObject(json, newJson, material);
 							Identifier recipeId = new Identifier(matId.getNamespace(), matId.getPath() + "_" + id.getPath());
 							recipes.put(recipeId, newJson);
+							addedRecipes++;
 						}
 					} else {
-						LOGGER.error("Parsing error loading template recipe {}: must have requirements object", id);
+						LOGGER.error("<Data Overhaul> Parsing error loading template recipe {}: must have requirements object", id);
 					}
 				}
 			} catch (IOException e) {
-				LOGGER.error("Parsing error loading template recipe {}", id, e);
+				LOGGER.error("<Data Overhaul> Parsing error loading template recipe {}", id, e);
 			}
 		}
+		LOGGER.info("<Data Overhaul> Generated {} recipes from {} materials and {} templates", addedRecipes, materials.size(), templates);
 	}
 
 	private void dataoverhaul$visitObject(JsonObject iterObj, JsonObject json, RecipeMaterial material) {
