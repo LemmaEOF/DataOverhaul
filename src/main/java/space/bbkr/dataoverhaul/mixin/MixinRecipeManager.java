@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
@@ -12,6 +11,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.profiler.Profiler;
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,29 +20,21 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import space.bbkr.dataoverhaul.RecipeMaterial;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Mixin(RecipeManager.class)
 public class MixinRecipeManager {
 	@Shadow @Final private static Gson GSON;
-	private static final List<Identifier> DEPRECATED_RECIPES = new ArrayList<>(); //TODO: will this be needed?
+	@Shadow @Final private static Logger LOGGER;
 
 	@Inject(method = "apply", at = @At("HEAD"))
 	private void applyTemplates(Map<Identifier, JsonElement> recipes, ResourceManager manager, Profiler profiler, CallbackInfo info) {
-		for (Identifier id : DEPRECATED_RECIPES) {
-			recipes.remove(id);
-		}
 		Map<Identifier, RecipeMaterial> materials = new HashMap<>();
 		for (Identifier path : manager.findResources("materials", path -> path.endsWith(".json"))) {
+			Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
 			try {
-				Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
 				Collection<Resource> resources = manager.getAllResources(path);
 				Map<String, Identifier> map = new HashMap<>();
 				Set<Identifier> ignore = new HashSet<>();
@@ -54,7 +46,8 @@ public class MixinRecipeManager {
 						JsonObject json = el.getAsJsonObject();
 						String resType = JsonHelper.getString(json, "type", "");
 						if (!type.equals("") && !type.equals(resType)) {
-							//TODO: throw here!!
+							LOGGER.error("Parsing error loading material {}: already has type {}, cannot be assigned {}", id, type, resType);
+							continue;
 						}
 						type = resType;
 						if (JsonHelper.hasJsonObject(json, "variants")) {
@@ -67,24 +60,27 @@ public class MixinRecipeManager {
 						}
 						if (JsonHelper.hasArray(json, "ignore")) {
 							JsonArray ignored = JsonHelper.getArray(json, "ignore");
+							boolean canAdd = true;
 							for (JsonElement entry : ignored) {
 								if (JsonHelper.isString(entry)) {
 									ignore.add(new Identifier(entry.getAsString()));
 								} else {
-									//TODO: throw here !!
+									LOGGER.error("Parsing error loading material {}: ignore list must only be strings", id);
+									canAdd = false;
 								}
 							}
+							if (!canAdd) continue;
 						}
 					}
 					materials.put(id, new RecipeMaterial(id, map, type, ignore));
 				}
 			} catch (IOException e) {
-				//TODO: print here
+				LOGGER.error("Parsing error loading material {}", id, e);
 			}
 		}
 		for (Identifier path : manager.findResources("templates", path -> path.endsWith(".json"))) {
+			Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
 			try {
-				Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
 				Resource res = manager.getResource(path);
 				String contents = IOUtils.toString(res.getInputStream(), StandardCharsets.UTF_8);
 				JsonElement el = JsonHelper.deserialize(GSON, contents, JsonElement.class);
@@ -114,11 +110,11 @@ public class MixinRecipeManager {
 							recipes.put(recipeId, newJson);
 						}
 					} else {
-						//TODO: throw here!!
+						LOGGER.error("Parsing error loading template recipe {}: must have requirements object", id);
 					}
 				}
 			} catch (IOException e) {
-				//TODO: print here
+				LOGGER.error("Parsing error loading template recipe {}", id, e);
 			}
 		}
 	}
