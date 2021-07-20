@@ -78,8 +78,8 @@ public class MixinRecipeManager {
 				LOGGER.error("Parsing error loading material {}", id, e);
 			}
 		}
-		for (Identifier path : manager.findResources("templates", path -> path.endsWith(".json"))) {
-			Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
+		for (Identifier path : manager.findResources("templates/recipes", path -> path.endsWith(".json"))) {
+			Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(18, path.getPath().length() - 5));
 			try {
 				Resource res = manager.getResource(path);
 				String contents = IOUtils.toString(res.getInputStream(), StandardCharsets.UTF_8);
