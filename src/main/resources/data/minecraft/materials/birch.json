@@ -7,10 +7,27 @@
     "door": "minecraft:birch_door",
     "fence": "minecraft:birch_fence",
     "fence_gate": "minecraft:birch_fence_gate",
+    "log": "minecraft:birch_log",
+    "logs": "minecraft:birch_logs",
     "pressure_plate": "minecraft:birch_pressure_plate",
     "sign": "minecraft:birch_sign",
     "slab": "minecraft:birch_slab",
     "stairs": "minecraft:birch_stairs",
-    "trapdoor": "minecraft:birch_trapdoor"
-  }
+    "trapdoor": "minecraft:birch_trapdoor",
+    "wood": "minecraft:birch_wood"
+  },
+  "ignore": [
+    "dataoverhaul:boat",
+    "dataoverhaul:button",
+    "dataoverhaul:door",
+    "dataoverhaul:fence",
+    "dataoverhaul:fence_gate",
+    "dataoverhaul:planks",
+    "dataoverhaul:pressure_plate",
+    "dataoverhaul:sign",
+    "dataoverhaul:slab",
+    "dataoverhaul:stairs",
+    "dataoverhaul:trapdoor",
+    "dataoverhaul:wood"
+  ]
 }

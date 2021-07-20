@@ -5,5 +5,13 @@
     "slab": "minecraft:cobblestone_slab",
     "stairs": "minecraft:cobblestone_stairs",
     "wall": "minecraft:cobblestone_wall"
-  }
+  },
+  "ignore": [
+    "dataoverhaul:slab",
+    "dataoverhaul:slab_from_stonecutting",
+    "dataoverhaul:stairs",
+    "dataoverhaul:stairs_from_stonecutting",
+    "dataoverhaul:wall",
+    "dataoverhaul:wall_from_stonecutting"
+  ]
 }

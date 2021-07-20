@@ -1,23 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "bark",
   "pattern": [
-    "###",
-    "###",
-    "###"
+    "##",
+    "##"
   ],
   "key": {
     "#": {
-      "item$variant": "ingot"
+      "item$variant": "log"
     }
   },
   "result": {
-    "item$variant": "block"
+    "item$variant": "wood",
+    "count": 3
   },
   "$requirements": {
-    "type": "metal",
     "variants": [
-      "ingot",
-      "block"
+      "log",
+      "wood"
     ]
   }
 }

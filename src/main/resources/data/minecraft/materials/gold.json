@@ -16,5 +16,25 @@
     "chestplate": "minecraft:golden_chestplate",
     "leggings": "minecraft:golden_leggings",
     "boots": "minecraft:golden_boots"
-  }
+  },
+  "ignore": [
+    "dataoverhaul:block",
+    "dataoverhaul:ingot",
+    "dataoverhaul:ingot_from_blasting_deepslate_ore",
+    "dataoverhaul:ingot_from_blasting_ore",
+    "dataoverhaul:ingot_from_blasting_raw",
+    "dataoverhaul:ingot_from_nuggets",
+    "dataoverhaul:ingot_from_smelting_deepslate_ore",
+    "dataoverhaul:ingot_from_smelting_ore",
+    "dataoverhaul:ingot_from_smelting_raw",
+    "dataoverhaul:pickaxe",
+    "dataoverhaul:axe",
+    "dataoverhaul:shovel",
+    "dataoverhaul:hoe",
+    "dataoverhaul:sword",
+    "dataoverhaul:helmet",
+    "dataoverhaul:chestplate",
+    "dataoverhaul:leggings",
+    "dataoverhaul:boots"
+  ]
 }

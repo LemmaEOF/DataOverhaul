@@ -7,10 +7,27 @@
     "door": "minecraft:spruce_door",
     "fence": "minecraft:spruce_fence",
     "fence_gate": "minecraft:spruce_fence_gate",
+    "log": "minecraft:spruce_log",
+    "logs": "minecraft:spruce_logs",
     "pressure_plate": "minecraft:spruce_pressure_plate",
     "sign": "minecraft:spruce_sign",
     "slab": "minecraft:spruce_slab",
     "stairs": "minecraft:spruce_stairs",
-    "trapdoor": "minecraft:spruce_trapdoor"
-  }
+    "trapdoor": "minecraft:spruce_trapdoor",
+    "wood": "minecraft:spruce_wood"
+  },
+  "ignore": [
+    "dataoverhaul:boat",
+    "dataoverhaul:button",
+    "dataoverhaul:door",
+    "dataoverhaul:fence",
+    "dataoverhaul:fence_gate",
+    "dataoverhaul:planks",
+    "dataoverhaul:pressure_plate",
+    "dataoverhaul:sign",
+    "dataoverhaul:slab",
+    "dataoverhaul:stairs",
+    "dataoverhaul:trapdoor",
+    "dataoverhaul:wood"
+  ]
 }

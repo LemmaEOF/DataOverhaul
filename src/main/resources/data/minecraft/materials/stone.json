@@ -4,5 +4,11 @@
     "block": "minecraft:stone",
     "slab": "minecraft:stone_slab",
     "stairs": "minecraft:stone_stairs"
-  }
+  },
+  "ignore": [
+    "dataoverhaul:slab",
+    "dataoverhaul:slab_from_stonecutting",
+    "dataoverhaul:stairs",
+    "dataoverhaul:stairs_from_stonecutting"
+  ]
 }

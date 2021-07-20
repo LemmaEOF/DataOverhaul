@@ -3,7 +3,20 @@
   "variants": {
     "ingot": "minecraft:copper_ingot",
     "block": "minecraft:copper_block",
-    "stairs": "minecraft:copper_stairs",
-    "slab": "minecraft:copper_slab"
-  }
+    "slab": "minecraft:copper_slab",
+    "stairs": "minecraft:copper_stairs"
+  },
+  "ignore": [
+    "dataoverhaul:block",
+    "dataoverhaul:ingot",
+    "dataoverhaul:ingot_from_blasting_deepslate_ore",
+    "dataoverhaul:ingot_from_blasting_ore",
+    "dataoverhaul:ingot_from_blasting_raw",
+    "dataoverhaul:ingot_from_nuggets",
+    "dataoverhaul:ingot_from_smelting_deepslate_ore",
+    "dataoverhaul:ingot_from_smelting_ore",
+    "dataoverhaul:ingot_from_smelting_raw",
+    "dataoverhaul:slab",
+    "dataoverhaul:stairs"
+  ]
 }

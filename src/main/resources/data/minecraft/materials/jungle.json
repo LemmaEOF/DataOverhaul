@@ -7,10 +7,27 @@
     "door": "minecraft:jungle_door",
     "fence": "minecraft:jungle_fence",
     "fence_gate": "minecraft:jungle_fence_gate",
+    "log": "minecraft:jungle_log",
+    "logs": "minecraft:jungle_logs",
     "pressure_plate": "minecraft:jungle_pressure_plate",
     "sign": "minecraft:jungle_sign",
     "slab": "minecraft:jungle_slab",
     "stairs": "minecraft:jungle_stairs",
-    "trapdoor": "minecraft:jungle_trapdoor"
-  }
+    "trapdoor": "minecraft:jungle_trapdoor",
+    "wood": "minecraft:jungle_wood"
+  },
+  "ignore": [
+    "dataoverhaul:boat",
+    "dataoverhaul:button",
+    "dataoverhaul:door",
+    "dataoverhaul:fence",
+    "dataoverhaul:fence_gate",
+    "dataoverhaul:planks",
+    "dataoverhaul:pressure_plate",
+    "dataoverhaul:sign",
+    "dataoverhaul:slab",
+    "dataoverhaul:stairs",
+    "dataoverhaul:trapdoor",
+    "dataoverhaul:wood"
+  ]
 }

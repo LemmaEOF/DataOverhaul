@@ -7,10 +7,27 @@
     "door": "minecraft:dark_oak_door",
     "fence": "minecraft:dark_oak_fence",
     "fence_gate": "minecraft:dark_oak_fence_gate",
+    "log": "minecraft:dark_oak_log",
+    "logs": "minecraft:dark_oak_logs",
     "pressure_plate": "minecraft:dark_oak_pressure_plate",
     "sign": "minecraft:dark_oak_sign",
     "slab": "minecraft:dark_oak_slab",
     "stairs": "minecraft:dark_oak_stairs",
-    "trapdoor": "minecraft:dark_oak_trapdoor"
-  }
+    "trapdoor": "minecraft:dark_oak_trapdoor",
+    "wood": "minecraft:dark_oak_wood"
+  },
+  "ignore": [
+    "dataoverhaul:boat",
+    "dataoverhaul:button",
+    "dataoverhaul:door",
+    "dataoverhaul:fence",
+    "dataoverhaul:fence_gate",
+    "dataoverhaul:planks",
+    "dataoverhaul:pressure_plate",
+    "dataoverhaul:sign",
+    "dataoverhaul:slab",
+    "dataoverhaul:stairs",
+    "dataoverhaul:trapdoor",
+    "dataoverhaul:wood"
+  ]
 }
