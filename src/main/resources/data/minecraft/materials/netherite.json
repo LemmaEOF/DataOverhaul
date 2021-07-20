@@ -1,0 +1,27 @@
+{
+  "type": "metal",
+  "variants": {
+    "ingot": "minecraft:netherite_ingot",
+    "block": "minecraft:netherite_block",
+    "pickaxe": "minecraft:netherite_pickaxe",
+    "axe": "minecraft:netherite_axe",
+    "shovel": "minecraft:netherite_shovel",
+    "hoe": "minecraft:netherite_hoe",
+    "sword": "minecraft:netherite_sword",
+    "helmet": "minecraft:netherite_helmet",
+    "chestplate": "minecraft:netherite_chestplate",
+    "leggings": "minecraft:netherite_leggings",
+    "boots": "minecraft:netherite_boots"
+  },
+  "ignore": [
+    "dataoverhaul:pickaxe",
+    "dataoverhaul:axe",
+    "dataoverhaul:shovel",
+    "dataoverhaul:hoe",
+    "dataoverhaul:sword",
+    "dataoverhaul:helmet",
+    "dataoverhaul:chestplate",
+    "dataoverhaul:leggings",
+    "dataoverhaul:boots"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item$variant": "ingot"
+    }
+  },
+  "result": {
+    "item$variant": "helmet"
+  },
+  "$requirements": {
+    "variants": [
+      "ingot",
+      "helmet"
+    ]
+  }
+}

@@ -6,6 +6,15 @@
     "block": "minecraft:gold_block",
     "ore": "minecraft:gold_ore",
     "deepslate_ore": "minecraft:deepslate_gold_ore",
-    "raw": "minecraft:raw_gold"
+    "raw": "minecraft:raw_gold",
+    "pickaxe": "minecraft:golden_pickaxe",
+    "axe": "minecraft:golden_axe",
+    "shovel": "minecraft:golden_shovel",
+    "hoe": "minecraft:golden_hoe",
+    "sword": "minecraft:golden_sword",
+    "helmet": "minecraft:golden_helmet",
+    "chestplate": "minecraft:golden_chestplate",
+    "leggings": "minecraft:golden_leggings",
+    "boots": "minecraft:golden_boots"
   }
 }

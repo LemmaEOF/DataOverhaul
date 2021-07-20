@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item$variant": "ingot"
+    }
+  },
+  "result": {
+    "item$variant": "chestplate"
+  },
+  "$requirements": {
+    "variants": [
+      "ingot",
+      "chestplate"
+    ]
+  }
+}

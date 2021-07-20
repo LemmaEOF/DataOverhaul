@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "X#",
+    " #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item$variant": "ingot"
+    }
+  },
+  "result": {
+    "item$variant": "axe"
+  },
+  "$requirements": {
+    "variants": [
+      "ingot",
+      "axe"
+    ]
+  }
+}

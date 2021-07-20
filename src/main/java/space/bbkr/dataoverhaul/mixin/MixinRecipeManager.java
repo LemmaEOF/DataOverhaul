@@ -45,6 +45,7 @@ public class MixinRecipeManager {
 				Identifier id = new Identifier(path.getNamespace(), path.getPath().substring(10, path.getPath().length() - 5));
 				Collection<Resource> resources = manager.getAllResources(path);
 				Map<String, Identifier> map = new HashMap<>();
+				Set<Identifier> ignore = new HashSet<>();
 				String type = "";
 				for (Resource res : resources) {
 					String contents = IOUtils.toString(res.getInputStream(), StandardCharsets.UTF_8);
@@ -64,8 +65,18 @@ public class MixinRecipeManager {
 								}
 							}
 						}
-				}
-				materials.put(id, new RecipeMaterial(id, map, type));
+						if (JsonHelper.hasArray(json, "ignore")) {
+							JsonArray ignored = JsonHelper.getArray(json, "ignore");
+							for (JsonElement entry : ignored) {
+								if (JsonHelper.isString(entry)) {
+									ignore.add(new Identifier(entry.getAsString()));
+								} else {
+									//TODO: throw here !!
+								}
+							}
+						}
+					}
+					materials.put(id, new RecipeMaterial(id, map, type, ignore));
 				}
 			} catch (IOException e) {
 				//TODO: print here
@@ -85,8 +96,9 @@ public class MixinRecipeManager {
 						JsonArray variants = JsonHelper.getArray(reqs, "variants", new JsonArray());
 						for (Identifier matId : materials.keySet()) {
 							RecipeMaterial material = materials.get(matId);
+							if (material.ignore().contains(id)) continue;
+							if (!type.equals("") && !type.equals(material.type())) continue;
 							boolean canUse = true;
-							if (!type.equals("") && !type.equals(material.type())) canUse = false;
 							for (JsonElement entry : variants) {
 								//TODO: throw if invalid?
 								if (!material.hasVariant(entry.getAsString())) {

@@ -6,6 +6,15 @@
     "block": "minecraft:iron_block",
     "ore": "minecraft:iron_ore",
     "deepslate_ore": "minecraft:deepslate_iron_ore",
-    "raw": "minecraft:raw_iron"
+    "raw": "minecraft:raw_iron",
+    "pickaxe": "minecraft:iron_pickaxe",
+    "axe": "minecraft:iron_axe",
+    "shovel": "minecraft:iron_shovel",
+    "hoe": "minecraft:iron_hoe",
+    "sword": "minecraft:iron_sword",
+    "helmet": "minecraft:iron_helmet",
+    "chestplate": "minecraft:iron_chestplate",
+    "leggings": "minecraft:iron_leggings",
+    "boots": "minecraft:iron_boots"
   }
 }

@@ -3,8 +3,9 @@ package space.bbkr.dataoverhaul;
 import net.minecraft.util.Identifier;
 
 import java.util.Map;
+import java.util.Set;
 
-public record RecipeMaterial(Identifier id, Map<String, Identifier> variants, String type) {
+public record RecipeMaterial(Identifier id, Map<String, Identifier> variants, String type, Set<Identifier> ignore) {
 	public String getShortName() {
 		return id.getPath();
 	}
